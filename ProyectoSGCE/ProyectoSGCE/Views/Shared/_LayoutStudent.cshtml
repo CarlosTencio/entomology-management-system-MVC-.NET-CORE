@@ -1,0 +1,88 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProyectoSGCE</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap-5.3.0/dist/css/bootstrap.css" /><!--carga el estilo-->
+    <script src="~/lib/bootstrap-5.3.0/dist/js/bootstrap.bundle.min.js"></script><!--este abre el drop-->
+    <script src="~/lib/bootstrap-5.3.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="~/css/style.css" />
+
+</head>
+<body>
+    <header class="container-fluid">
+    <div class="container">
+         <div>
+           <h1 class="headTitle">Sistema de Gestión para la Colección de Entomología</h1>
+         </div>
+            <nav class="navbar navbar-expand-lg menu border-bottom border-bottom-dark" data-bs-theme="dark" style="overflow: visible;">
+
+            <div class="container-fluid d-flex menu">
+              
+                
+                    <form asp-action="Index" asp-controller="User">
+                        <button class="btn btn-link" type="submit" data-bs-toggle="tooltip"
+                                data-bs-placement="top" data-bs-title="Ver vistos">
+                            <img src="~/img/bicho.png" alt="Inicio">
+                        </button>
+                    </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Buscar
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="GenderSpecie" asp-action="SearchView">Buscar por especie o género</a>
+                                <a class="dropdown-item" asp-controller="Plant" asp-action="SearchView">Buscar por planta hospedadora</a>
+                                <a class="dropdown-item" asp-controller="Order" asp-action="SearchView">Buscar por orden</a>
+                                <a class="dropdown-item" asp-controller="Family" asp-action="SearchView">Buscar por familia</a>
+                                <a class="dropdown-item" asp-controller="Subfamily" asp-action="SearchView">Buscar por subfamilia</a>
+                            </div>
+                        </li>
+                    </ul>
+                        <ul class="navbar-nav menu d-flex ms-auto">
+                         <li class="nav-item">
+                                <form asp-action="Logout" asp-controller="User">
+                                    <button class="btn btn-link" type="submit" data-bs-toggle="tooltip"
+                                            data-bs-placement="top" data-bs-title="Ver vistos">
+                                        <img src="~/img/logout.png" alt="Inicio">
+                                    </button>
+                                </form>
+                         </li>
+                        </ul>
+                </div>
+            </div>
+        </nav>
+
+        </div>
+    </header>
+
+
+    <div class="container" style="margin-bottom: 2em;">
+        @RenderBody()
+    </div>
+
+    <footer class="footer bg-dark text-white fixed-bottom" style="position: fixed; bottom: 0; width: 100%;">
+            <div class="container text-center">
+                Cristian Hernandez | Carlos Tencio 2023.
+            </div>
+    </footer>
+    
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

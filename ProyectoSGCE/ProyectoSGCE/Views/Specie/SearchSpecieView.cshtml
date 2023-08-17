@@ -1,0 +1,40 @@
+﻿@model List<ProyectoSGCE.Models.Specie>
+
+@{
+    Layout = "_LayoutStudent";
+
+}
+
+<div class="container my-4 content">
+
+    <hr class="border-success  border-3">
+    <div class="col-12 table-responsive">
+        <table class="table table-sm table-striped">
+            <tr class="bg-info">
+                <th>Orden</th>
+                <th>Familia</th>
+                <th>Subfamilia</th>
+                <th>Género</th>
+                <th>Especie</th>
+                <th>Acción</th>
+            </tr>
+
+            @foreach (Specie specie in ViewBag.Species)
+            {
+                <tr class="table-success">
+                    <td>@specie.order</td>
+                    <td>@specie.family</td>
+                    <td>@specie.subfamily</td>
+                    <td>@specie.gender</td>
+                    <td>@specie.specie</td>
+                    <td>
+                        <form asp-action="SearchSpecimenView" asp-controller="Specimen">
+                            <input type="text" name="specimen" id="specimen" value="@specie.id_specie" hidden/>
+                            <input type="submit" class="btn btn-dark" value="Ver especímens" />
+                        </form>                       
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

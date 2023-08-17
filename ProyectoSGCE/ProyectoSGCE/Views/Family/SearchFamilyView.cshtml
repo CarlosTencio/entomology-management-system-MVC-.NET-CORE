@@ -1,0 +1,72 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<ProyectoSGCE.Models.Family>
+
+@{
+    Layout = "_LayoutStudent";
+  
+}
+
+<div class="container my-4 content">
+
+    <form name="form-family" id="form-family" class="row g-2 form-input" asp-action="SearchFamilyView"
+          method="post" class="form-inline">
+        <div class="col-12 d-flex">
+            <div class="col-xl-3 col-md-4 col-sm-6 mx-1">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="family" name="family" placeholder="familia" required>
+                    <label for="floatingInput" style="color:black">Ingrese familia</label>
+                </div>
+            </div>
+            <div class="col-xl-1 col-md-4 col-sm-3 mb-3 mx-2">
+                <input type="submit" class="btn btn-secondary" name="search" value="Buscar">
+            </div>
+
+        </div>
+    </form>
+
+    <div class="col-xs-3 d-inline-block">
+
+        <form asp-action="SearchFamilyView" method="post" class="form-inline" method="post">
+            <input class="btn btn-dark" type="submit" value="Asc">
+            <input type="text" name="family" id="family" value="@ViewBag.Name" hidden>
+            
+            
+        </form>
+    </div>
+    <div class="col-xs-3 d-inline-block">
+        <form asp-action="SearchFamilyDesc" class="form-inline" method="post">
+            <input type="text" name="familyDesc" id="familyDesc" value="@ViewBag.Name" hidden>
+            <input class="btn btn-dark" type="submit" value="Desc" name="familyDesc" id="familyDesc">
+            
+           
+            
+        </form>
+    </div>
+
+
+
+    <hr class="border-success  border-3">
+    <div class="col-12 table-responsive">
+        <table class="table table-sm table-striped">
+            <tr class="bg-info">
+                <th>Familia</th>
+                <th>Cantidad de Subfamilias</th>
+                <th>Cantidad de Géneros</th>
+                <th>Cantidad de Especies</th>
+            </tr>
+
+            @foreach (Family family in ViewBag.Families)
+            {
+                <tr class="table-success">
+                    <td>@family.nombre</td>
+                    <td>@family.total_subfamilias</td>
+                    <td>@family.total_generos</td>
+                    <td>@family.total_especies</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>

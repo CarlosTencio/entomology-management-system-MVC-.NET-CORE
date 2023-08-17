@@ -1,0 +1,66 @@
+﻿@model List<ProyectoSGCE.Models.Order>
+
+@{
+    Layout = "_LayoutStudent";
+    //List<Order> orders = ViewBag.Orders;
+}
+
+<div class="container my-4 content">
+ 
+    <form name="form-order" id="form-order" class="row g-2 form-input" asp-controller="Order" asp-action="SearchOrderView"
+          method="post" class="form-inline">
+        <div class="col-12 d-flex">
+            <div class="col-xl-3 col-md-4 col-sm-6 mx-1">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="order" name="order" placeholder="orden" required>
+                    <label for="floatingInput" style="color:black">Ingrese orden</label>
+                </div>
+            </div>
+            <div class="col-xl-1 col-md-4 col-sm-3 mb-3 mx-2">
+                <input type="submit" class="btn btn-secondary" name="search" value="Buscar">
+            </div>
+           
+        </div>
+    </form>
+
+        <div class="col-xs-3 d-inline-block">
+
+        <form asp-action="SearchOrderView" method="post" class="form-inline">
+            <input type="text" name="order" id="order" value="@ViewBag.name" hidden>
+              <input class="btn btn-dark" type="submit" value="Asc" />
+            </form>
+        </div>
+        <div class="col-xs-3 d-inline-block">
+        <form asp-action="SearchOrderDesc" method="post"  class="form-inline">
+            <input type="text" name="orderDesc" id="orderDesc" value="@ViewBag.name" hidden>
+                <input class="btn btn-dark" type="submit" value="Desc" />
+            </form>
+        </div>
+    
+
+
+    <hr class="border-success  border-3">
+        <div class="col-12 table-responsive">
+            <table class="table table-sm table-striped">
+                <tr class="bg-info">
+                    <th>Orden</th>
+                    <th>Cantidad de Familias</th>
+                    <th>Cantidad de Subfamilias</th>
+                    <th>Cantidad de Géneros</th>
+                    <th>Cantidad de Especies</th>
+                </tr>
+
+                @foreach (Order order in ViewBag.Orders)
+                {
+                    <tr class="table-success">
+                        <td>@order.NameOrder</td>
+                        <td>@order.TotalFamilies</td>
+                        <td>@order.TotalSubfamilies</td>
+                        <td>@order.TotalGenres</td>
+                        <td>@order.TotalSpecies</td>
+                    </tr>
+                }
+            </table>
+        </div>
+  
+</div>

@@ -1,0 +1,53 @@
+﻿@model List<ProyectoSGCE.Models.Plant>
+
+@{
+    Layout = "_LayoutStudent";
+    //List<Order> orders = ViewBag.Orders;
+}
+
+<div class="container my-4 content">
+
+
+
+    <form name="form-plant" id="form-plant" class="row g-2 form-input" asp-controller="Plant" asp-action="SearchPlantView"
+              method="post" class="form-inline">
+            <div class="col-12 d-flex">
+                <div class="col-xl-3 col-md-4 col-sm-6 mx-1">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="plant" name="plant" placeholder="planta" required>
+                        <label for="floatingInput" style="color:black">Ingrese planta</label>
+                    </div>
+                </div>
+                <div class="col-xl-1 col-md-4 col-sm-3 mb-3 mx-2">
+                    <input type="submit" class="btn btn-secondary" name="search" value="Buscar">
+                </div>
+
+            </div>
+        </form>
+       
+
+    <hr class="border-success  border-3">
+    <div class="col-12 table-responsive">
+        <table class="table table-sm table-striped">
+            <tr class="bg-info">
+                <th>Orden</th>
+                <th>Familia</th>
+                <th>Subfamilia</th>
+                <th>Género</th>
+                <th>Cantidad de Especies</th>
+            </tr>
+
+            @foreach (Plant plant in ViewBag.Plants)
+            {
+                <tr class="table-success">
+                    <td>@plant.Order</td>
+                    <td>@plant.Family</td>
+                    <td>@plant.Subfamily</td>
+                    <td>@plant.Gender</td>
+                    <td>@plant.Species</td>
+                </tr>
+            }
+        </table>
+    </div>
+
+</div>

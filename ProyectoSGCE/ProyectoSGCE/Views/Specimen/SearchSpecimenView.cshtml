@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "_LayoutStudent";
+
+}
+
+<div class="container my-4 content" style="margin-bottom: 20px;">
+
+    <h2 style="color:aliceblue">Especímenes</h2>
+
+    @{
+        bool registroExitoso = TempData["RegistroExitoso"] as bool? ?? false;
+        if (registroExitoso)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                ¡Registro exitoso del comentario!
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+
+
+    <hr class="border-success border-3">
+    <div class="col-12 table-responsive">
+        <table class="table table-sm table-striped">
+            <tr class="bg-info">
+                <th>Género</th>
+                <th>Especie</th>
+                <th>Lugar de almacenamiento</th>
+                <th>Número</th>
+                <th>Detalles</th>
+                <th>Comentario</th>
+                <th>Info</th>
+            </tr>
+
+            @foreach (var index in Enumerable.Range(0, ViewBag.Specimens.Count))
+            {
+                var specimen = ViewBag.Specimens[index];
+                var comments = ViewBag.SpecimensComment[index]; // Obtener los comentarios correspondientes al especimen
+
+                var collapseId = $"collapse-{index}";
+
+                <tr class="table-success">
+                    <td>@specimen.gender</td>
+                    <td>@specimen.specie</td>
+                    <td>@specimen.storage</td>
+                    <td>@specimen.location</td>
+                    <td>
+                        <form asp-action="SpecimenDetailsView">
+                            <input type="text"  name="specimen" id="specimen" value="@specimen.id_specimen" hidden />
+                            <input type="text" name="gender" id="gender" value="@specimen.id_gender" hidden />
+                            <input type="submit" class="btn btn-dark" value="Detalles" />
+                        </form>
+                    </td>
+                    <td>
+                        <form asp-action="RecordComment" asp-controller="User" class="form-input" method="post">
+                            <input type="text" name="comment" id="comment" required />
+                            <input type="text" name="specie" id="specie" value="@specimen.id_specie" hidden />
+                            <input type="text" name="id_specimen" id="id_specimen" value="@specimen.id_specimen" hidden />                      
+                            <input type="submit" value="Añadir" class="btn btn-dark" />
+                        </form>
+                    </td>
+                    <td>
+                        <button class="btn btn-dark" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId">Comentarios</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7">
+                        <div id="@collapseId" class="collapse">
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Comentario</th>
+                                </tr>
+                                @foreach (var comment in comments)
+                                {
+                                    <tr>
+                                        <td>@comment.User</td>
+                                        <td>@comment.Comment</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿@model List<ProyectoSGCE.Models.SpecimenDetails>
+@{
+    Layout = "_LayoutStudent";
+
+}
+
+<div class="container my-4 content">
+    <div class="row g-3 form-input">
+        <div class="text-center">
+            <h2 class="title">Espécimen</h2>
+            <hr class="border-success  border-3">
+            <div class="col-12 mb-3 d-flex justify-content-center">
+                <div class="col-xl-12 col-md-12 col-sm-12 carrousel">
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner ">
+                            @foreach (string image in ViewBag.Img)
+                            {
+                                <div class="carousel-item active">
+                                    <img src=@image alt="especimen.jpg">
+                                </div> 
+
+                            }
+                        </div>
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            @foreach (SpecimenDetails specimen in ViewBag.Specimens)
+            {
+
+                <div class="col-12 mb-3 d-flex justify-content-center row">
+                    <div class="col-xl-4 col-md-6 mb-3">
+                        <div class="card" style="border-radius: 0.5em;">
+                            <div class="card-header font-card" style="color:black">
+                                Información recolección
+                            </div>
+                            <ul class="list-group list-group-flush" style="border-radius: 0.5em;">
+                                <li class="list-group-item">
+                                    País: @specimen.Country
+                                </li>
+                                <li class="list-group-item">
+                                    Provincia: @specimen.Province
+                                </li>
+                                <li class="list-group-item">
+                                    Cantón: @specimen.Canton
+                                </li>
+                                <li class="list-group-item">
+                                    Distrito: @specimen.District
+                                </li>
+                                <li class="list-group-item">
+                                    Recolector: @specimen.Collector
+                                </li>
+                                <li class="list-group-item">
+                                    Fecha de recolección: @specimen.Date
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6 mb-3">
+                        <div class="card" style="border-radius: 0.5em;">
+                            <div class="card-header font-card" style="color:black">
+                                Información taxonómica
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-start">
+                                    <pre class="indent">Orden: @specimen.Order</pre>
+                                </li>
+                                <li class="list-group-item text-start">
+                                    <pre class="indent">﹂Familia: @specimen.Family</pre>
+                                </li>
+                                <li class="list-group-item text-start">
+                                    <pre class="indent">﹂Subfamilia: @specimen.Subfamily</pre>
+                                </li>
+                                <li class="list-group-item text-start">
+                                    <pre class="indent">﹂Género: @specimen.gender</pre>
+                                </li>
+                                <li class="list-group-item text-start">
+                                    <pre class="indent">﹂Especie: @specimen.specie</pre>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="col-12 mb-3 d-flex justify-content-center">
+            <div class="col-md-4 card">
+                <div class="card" style="border-radius: 0.5em;">
+                    <div class="card-header font-card" style="color:black">
+                        Plantas hospedadoras
+                    </div>
+                    <ul class="list-group list-group-flush" style="border-radius: 0.5em;">
+                        @foreach (PlantName plant in ViewBag.Plants)
+                        {
+                            <li class="list-group-item">
+                                @plant.Name
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>       
+</div>
+
